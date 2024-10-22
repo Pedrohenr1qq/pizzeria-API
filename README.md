@@ -13,7 +13,8 @@ Este projeto utiliza as seguintes dependencias:
 
 * express --> Criação de rotas
 * mongoose --> Conexão com banco de Dados (MongoDB)
-* dotenv --> Para criação de variáveis de ambiente
+* dotenv --> Criação de variáveis de ambiente
+* swagger-ui-express --> Documentação das rotas da API
 
 Para instalação dessas dependencias, utilize o comando: `npm i <nome-da-dependencia>`
 
@@ -22,3 +23,20 @@ Para instalação dessas dependencias, utilize o comando: `npm i <nome-da-depend
 * Nodemon --> Para atualização automática do código durante desenvolvimento
 
 Para instalação dessas dependencias, utilize o comando: `npm i -D <nome-da-dependencia>`
+
+## Componentes
+
+### User
+
+O User representa o usuário que irá requisitar os serviços da pizaria. O usuário possui os seguintes atributos:
+
+* Nome --> Nome do usuário na plataforma
+* Email --> Para que o usuário consiga logar na plataforma
+* Senha --> Para que o usuário consiga logar na plataforma
+* Endereços --> Para saber para onde o pedido deve ser entregue
+* Admin --> Para saber os privilégios que esse usuário possui em relação à plataforma
+* CreatedAt --> Para saber quando esse usuário foi criado
+
+## Rotas
+
+As rotas existentes estão documentadas no Swagger Document. Se quiser saber mais, acesse a rota: `/docs/api-routes`
