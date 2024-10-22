@@ -84,11 +84,211 @@
         "summary": "Mostra o usuário escolhido pelo ID",
         "description": "Rota responsável mostrar o usuário selecionado pelo ID",
         "tags": ["User"],
-        "parameters":[{
-          "in": "path",
-          "schema": {"type": "string"},
-          "name": "id"
-        }],
+        "parameters":[
+          {
+          " in": "path",
+            "schema": {"type": "string"},
+            "name": "_id"
+         }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. Tarefa concluida com sucesso",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "$ref":"#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Erro de autenticação",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Usuário não encontrado",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno.",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/create": {
+      "post": {
+        "summary": "Cria um novo usuário",
+        "description": "Rota responsável pela criação de um novo usuário, preenchido os campos necessários",
+        "tags": ["User"],
+        "requestBody":{
+          "content":{
+            "application/json":{
+              "schema":{
+                "type":"object",
+                "$ref":"#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "OK. Usuário cadastrado com sucessso",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "$ref":"#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Erro de autenticação",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno.",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/update/{id}": {
+      "put":{
+        "sumary": "Atualiza um usuário selecionado por ID",
+        "description": "Rota responsável por atualizar os dados de um usuário selecionado por id, prenchidos os campos necessários",
+        "tags":["User"],
+        "parameters":[
+          {
+            "in": "path",
+            "schema": {"type":"string"},
+            "name": "id"
+          }
+        ],
+        "requestBody":{
+          "content":{
+            "application/json":{
+              "schema":{
+                "type":"object",
+                "$ref":"#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200": {
+            "description": "OK. Tarefa concluida com sucesso",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "$ref":"#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Erro de autenticação",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Usuário não encontrado",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno.",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/delete/id":{
+      "delete":{
+        "summary": "Delela um usuário selecionado por ID",
+        "description": "Rota responsável por deletar um usuário selecionado por ID",
+        "tags":["User"],
+        "parameters":[
+          {
+            "in": "path",
+            "schema": {"type": "string"},
+            "name": "_id"
+         }
+        ],
         "responses": {
           "200": {
             "description": "OK. Tarefa concluida com sucesso",
