@@ -8,6 +8,7 @@ const connectToDatabase = require('./src/database/database');
 
 // Require Routers
 const userRouter = require('./src/router/user.router');
+const docsRouter = require('./src/router/docs.router');
 
 // Starting database connection
 connectToDatabase();
@@ -18,6 +19,8 @@ app.use(express.json());
 
 //Create Routes
 app.use('/user', userRouter);
+app.use('/docs', docsRouter);
+
 
 // Main route
 app.get('/', (req,res) => {
