@@ -1,0 +1,173 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Pizzeria API",
+    "description": "uma API completa para uma Pizzaria",
+    "contact": {
+        "name": "Pedro email",
+        "email": "pedrohenr1qq.silva05@gmail.com"
+      },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/",
+      "description": "API de test LOCAL"
+    }
+  ],
+  "paths": {
+    "/user/FindAll":{
+      "get":{
+        "summary": "Mostra todos os usuários cadastrados",
+        "description": "Rota responsável por listar os usuários cadastrados desta API",
+        "tags": ["User"],
+        
+        "responses": {
+          "200": {
+            "description": "OK. Tarefa concluida com sucesso",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Erro de autenticação",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Usuário não encontrado",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno.",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/FindById/{id}":{
+      "get":{ 
+        "summary": "Mostra o usuário escolhido pelo ID",
+        "description": "Rota responsável mostrar o usuário selecionado pelo ID",
+        "tags": ["User"],
+        "parameters":[{
+          "in": "path",
+          "schema": {"type": "string"},
+          "name": "id"
+        }],
+        "responses": {
+          "200": {
+            "description": "OK. Tarefa concluida com sucesso",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "$ref":"#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Erro de autenticação",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Usuário não encontrado",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno.",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User":{
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "email": {"type": "string"},
+          "password": {"type": "string"},
+          "addresses": {
+            "type": "array",
+            "items": {
+              "properties": {
+                "street": {"type": "string"},
+                "number": {"type": "number"},
+                "complement": {"type": "string"},
+                "CEP": {"type": "string"},
+                "createdAt": {"type": "string"}
+              }
+            }
+          },
+          "admin": {"type": "boolean"},
+          "createdAt": {"type": "string"}
+        }
+      }
+    }
+  }
+}
