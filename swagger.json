@@ -86,9 +86,9 @@
         "tags": ["User"],
         "parameters":[
           {
-          " in": "path",
+            "in": "path",
             "schema": {"type": "string"},
-            "name": "_id"
+            "name": "id"
          }
         ],
         "responses": {
@@ -277,7 +277,7 @@
         }
       }
     },
-    "/user/delete/id":{
+    "/user/delete/{id}":{
       "delete":{
         "summary": "Delela um usuário selecionado por ID",
         "description": "Rota responsável por deletar um usuário selecionado por ID",
@@ -286,7 +286,7 @@
           {
             "in": "path",
             "schema": {"type": "string"},
-            "name": "_id"
+            "name": "id"
          }
         ],
         "responses": {
@@ -297,6 +297,188 @@
                 "schema":{
                   "type": "object",
                   "$ref":"#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Erro de autenticação",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Usuário não encontrado",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno.",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/addAddress/{id}":{
+      "post":{
+        "summary": "Adicion um endereço a um usuário",
+        "description": "Rota responsável por adicionar endereço(s) à um usuário selecionado por ID",
+        "tags":["User"],
+        "parameters":[
+          {
+            "in": "path",
+            "schema": {"type": "string"},
+            "name": "id"
+         }
+        ],
+        "requestBody":{
+          "content":{
+            "application/json":{
+              "schema":{
+              "type":"object",
+                  "properties": {
+                    "id": {"type": "string"}
+                  }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK. Tarefa concluida com sucesso",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "$ref":"#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro na requisição",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Erro de autenticação",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Usuário não encontrado",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno.",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/removeAddress/{id}":{
+      "delete":{
+        "summary": "Adicion um endereço a um usuário",
+        "description": "Rota responsável por adicionar endereço(s) à um usuário selecionado por ID",
+        "tags":["User"],
+        "parameters":[
+          {
+            "in": "path",
+            "schema": {"type": "string"},
+            "name": "id"
+         }
+        ],
+        "requestBody":{
+          "content":{
+            "application/json":{
+              "schema":{
+                "type":"object",
+                "properties":{
+                  "addressId": {"type":"string"}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK. Tarefa concluida com sucesso",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "$ref":"#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro na requisição",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
                 }
               }
             }
@@ -366,6 +548,18 @@
           },
           "admin": {"type": "boolean"},
           "createdAt": {"type": "string"}
+        }
+      },
+      "userAddress":{
+        "type": "array",
+        "items": {
+          "properties": {
+            "street": {"type": "string"},
+            "number": {"type": "number"},
+            "complement": {"type": "string"},
+            "CEP": {"type": "string"},
+            "createdAt": {"type": "string"}
+          }
         }
       }
     }
