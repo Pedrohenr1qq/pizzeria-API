@@ -7,6 +7,7 @@ require('dotenv').config();
 const connectToDatabase = require('./src/database/database');
 
 // Require Routers
+const authRouter = require('./src/router/auth.router');
 const userRouter = require('./src/router/user.router');
 const docsRouter = require('./src/router/docs.router');
 
@@ -18,6 +19,7 @@ const app = express();
 app.use(express.json());
 
 //Create Routes
+app.use('/auth', authRouter);
 app.use('/user', userRouter);
 app.use('/docs', docsRouter);
 
