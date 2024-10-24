@@ -1,5 +1,6 @@
 // Dependencies
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 // Create user schema
 const userSchema = new mongoose.Schema({
@@ -17,6 +18,13 @@ const userSchema = new mongoose.Schema({
   ],
   admin: {type: Boolean, required: true, default: false},
   createdAt: {type: Date, required: true, default: Date.now()},
+});
+
+// Encrypt the password
+userSchema.pre("save", async function (next){
+  if(this.password) this.password = await bcrypt.hash(this.password, 10);
+  console.log(this.password);
+  next();
 });
 
 // Create user model

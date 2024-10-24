@@ -1,4 +1,5 @@
 const authService = require('../service/auth.service');
+const bcrypt = require('bcrypt');
 
 const userLogin = async (req, res) => {
   try {
@@ -7,7 +8,7 @@ const userLogin = async (req, res) => {
     const user=  await authService.loginService(email);
     if(!user) res.status(404).send({message: "User not found"});
   
-    const isPasswordValid = (password === user.password);
+    const isPasswordValid = bcrypt.compare(password, user.password);
     if(!isPasswordValid) return res.stauts(401).send({message: "Invalid login"});
   
     const token = authService.generateToken(user.id);
@@ -16,7 +17,7 @@ const userLogin = async (req, res) => {
       email,
       token
     });
-  } catch (error) {
+  } catch (err) {
     console.log(`Error in AUTH controller: ${err.message}`);
     return res.status(500).send({message: 'Internal error. Try again later.'});  
   }
