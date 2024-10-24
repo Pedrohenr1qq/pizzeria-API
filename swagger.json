@@ -18,6 +18,11 @@
   "paths": {
     "/user/FindAll":{
       "get":{
+        "security":[
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Mostra todos os usuários cadastrados",
         "description": "Rota responsável por listar os usuários cadastrados desta API",
         "tags": ["User"],
@@ -80,7 +85,12 @@
       }
     },
     "/user/FindById/{id}":{
-      "get":{ 
+      "get":{
+        "security":[
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Mostra o usuário escolhido pelo ID",
         "description": "Rota responsável mostrar o usuário selecionado pelo ID",
         "tags": ["User"],
@@ -203,7 +213,12 @@
     },
     "/user/update/{id}": {
       "put":{
-        "sumary": "Atualiza um usuário selecionado por ID",
+        "security":[
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Atualiza um usuário selecionado por ID",
         "description": "Rota responsável por atualizar os dados de um usuário selecionado por id, prenchidos os campos necessários",
         "tags":["User"],
         "parameters":[
@@ -279,6 +294,11 @@
     },
     "/user/delete/{id}":{
       "delete":{
+        "security":[
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Delela um usuário selecionado por ID",
         "description": "Rota responsável por deletar um usuário selecionado por ID",
         "tags":["User"],
@@ -345,7 +365,12 @@
     },
     "/user/addAddress/{id}":{
       "post":{
-        "summary": "Adicion um endereço a um usuário",
+        "security":[
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Adiciona um endereço a um usuário",
         "description": "Rota responsável por adicionar endereço(s) à um usuário selecionado por ID",
         "tags":["User"],
         "parameters":[
@@ -436,8 +461,13 @@
     },
     "/user/removeAddress/{id}":{
       "delete":{
-        "summary": "Adicion um endereço a um usuário",
-        "description": "Rota responsável por adicionar endereço(s) à um usuário selecionado por ID",
+        "security":[
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Remove um endereço de um usuário",
+        "description": "Rota responsável por remover um endereço de um usuário selecionado por ID",
         "tags":["User"],
         "parameters":[
           {
@@ -527,6 +557,13 @@
     }
   },
   "components": {
+    "securitySchemes":{
+      "bearerAuth":{
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
     "schemas": {
       "User":{
         "type": "object",
