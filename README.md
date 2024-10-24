@@ -15,6 +15,8 @@ Este projeto utiliza as seguintes dependencias:
 * mongoose --> Conexão com banco de Dados (MongoDB)
 * dotenv --> Criação de variáveis de ambiente
 * swagger-ui-express --> Documentação das rotas da API
+* jsonwebtoken --> Criação de tokens para autenticação de usuário
+* bcrypt --> Criptografia das senhas dos usuários
 
 Para instalação dessas dependencias, utilize o comando: `npm i <nome-da-dependencia>`
 
@@ -23,6 +25,28 @@ Para instalação dessas dependencias, utilize o comando: `npm i <nome-da-depend
 * Nodemon --> Para atualização automática do código durante desenvolvimento
 
 Para instalação dessas dependencias, utilize o comando: `npm i -D <nome-da-dependencia>`
+
+
+## Objendo o programa
+
+Obtendo o program
+
+Clique no botão verde escrito `<> Code`.
+
+Se você quiser instalar o arquivo .zip, clique na opção Download ZIP. Após isso, descompacte o arquivo .zip baixado no lugar de sua escolha.
+
+Caso tenha optado por baixar via `git clone`, copie o link https do programa --> `https://github.com/Pedrohenr1qq/pizzeria-API.git`.
+
+Abra um terminal ou prompt de comando.
+
+Vá para o diretório onde deseja baixar o programa e digite o seguinte comando:
+
+```
+git clone https://github.com/Pedrohenr1qq/pizzeria-API.git 
+```
+
+Verifique se o programa foi baixado corretamente. Caso sim, você pode seguir com a explicação abaixo.
+
 
 ## Componentes
 
