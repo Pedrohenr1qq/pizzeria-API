@@ -14,7 +14,7 @@ const findUserById = async (req,res) =>{
   } catch (error) {
     if(error.kind == "ObjectId") return res.status(400).send({message: "Invalid ID"});
 
-    console.log(`Error in find user: ${error}`);
+    console.log(`Error in find USER: ${error}`);
     return res.status(500).send({message: 'Internal error. Try again later.'});
   }
 }
@@ -23,7 +23,7 @@ const findAllUsers = async (req,res) =>{
   try {
     return  res.send(await userService.findAllUsers());
   } catch (error) {
-    console.log(`Error in find all users: ${error.message}`);
+    console.log(`Error in find all USERS: ${error.message}`);
     return res.status(500).send({message: 'Internal error. Try again later.'});
   }
 }
@@ -39,7 +39,7 @@ const createUser= async (req,res) =>{
     return res.status(201).send(await userService.createUser(newUser));
 
   } catch (error) {
-    console.log(`Error in create user: ${error.message}`);
+    console.log(`Error in create USER: ${error.message}`);
     return res.status(500).send({message: 'Internal error. Try again later.'});
   }
 }
@@ -55,7 +55,7 @@ const updateUser= async (req,res) =>{
     res.send(await userService.updateUser(req.params.id, updatedUser));
 
   } catch (error) {
-    console.log(`Error in update user: ${error.message}`);
+    console.log(`Error in update USER: ${error.message}`);
     return res.status(500).send({message: 'Internal error. Try again later.'});
   }
 }
@@ -68,7 +68,7 @@ const deleteUser= async (req,res) =>{
     else return res.status(404).send({message: "User not found"});
 
   } catch (error) {
-    console.log(`Error in delete user: ${error.message}`);
+    console.log(`Error in delete USER: ${error.message}`);
     return res.status(500).send({message: 'Internal error. Try again later.'});
   }
 }
@@ -85,7 +85,7 @@ const addAddress= async (req,res) =>{
     else return res.status(400).send({message: "Something is wrong. Try again"});
 
   } catch (error) {
-    console.log(`Error in create address: ${error.message}`);
+    console.log(`Error in create USER address: ${error.message}`);
     return res.status(500).send({message: 'Internal error. Try again later.'});
   }
 }
@@ -105,7 +105,7 @@ const removeAddress= async (req,res) =>{
     if(found) return res.send({message: "User address removed"});
     else return res.status(400).send({message: "Address not found."});
   } catch (error) {
-    console.log(`Error in delete address: ${error.message}`);
+    console.log(`Error in delete USER address: ${error.message}`);
     return res.status(500).send({message: 'Internal error. Try again later.'});
   }
 }
