@@ -1154,7 +1154,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Deleta um product selecionado por ID",
+        "summary": "Deleta um produto selecionado por ID",
         "description": "Rota responsável por deletar um produto selecionado por ID",
         "tags":["Product"],
         "parameters":[
@@ -1191,6 +1191,334 @@
           },
           "404": {
             "description": "Produto não encontrado",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno.",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/order/FindAll":{
+      "get":{
+        "security":[
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Mostra todos os pedidos cadastrados",
+        "description": "Rota responsável por listar os pedidos cadastrados desta API",
+        "tags": ["Order"],
+        "responses": {
+          "200": {
+            "description": "OK. Tarefa concluida com sucesso",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Order"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Erro de autenticação",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno.",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/order/FindById/{id}":{
+      "get":{
+        "security":[
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Mostra o pedido escolhido pelo ID",
+        "description": "Rota responsável mostrar o pedido selecionado pelo ID",
+        "tags": ["Order"],
+        "parameters":[
+          {
+            "in": "path",
+            "schema": {"type": "string"},
+            "name": "id"
+         }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. Tarefa concluida com sucesso",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "$ref":"#/components/schemas/Order"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Erro de autenticação",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Pedido não encontrado",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno.",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/order/create": {
+      "post": {
+        "security":[
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Cria um novo pedido",
+        "description": "Rota responsável pela criação de um novo pedido, preenchido os campos necessários",
+        "tags": ["Order"],
+        "requestBody":{
+          "content":{
+            "application/json":{
+              "schema":{
+                "type":"object",
+                "$ref":"#/components/schemas/Order"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "OK. Pedido cadastrado com sucessso",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "$ref":"#/components/schemas/Order"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Erro de autenticação",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno.",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/order/delete/{id}":{
+      "delete":{
+        "security":[
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Deleta um pedido selecionado por ID",
+        "description": "Rota responsável por deletar um pedido selecionado por ID",
+        "tags":["Order"],
+        "parameters":[
+          {
+            "in": "path",
+            "schema": {"type": "string"},
+            "name": "id"
+         }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. Tarefa concluida com sucesso",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "$ref":"#/components/schemas/Order"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Erro de autenticação",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Pedido não encontrado",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno.",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/order/updateStatus/{id}": {
+      "patch":{
+        "security":[
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Atualiza o status do pedido selecionado por ID",
+        "description": "Rota responsável por atualizar o status de 'completed' de um produto selecionado por id",
+        "tags":["Order"],
+        "parameters":[
+          {
+            "in": "path",
+            "schema": {"type":"string"},
+            "name": "id"
+          }
+        ],
+        "responses":{
+          "200": {
+            "description": "OK. Tarefa concluida com sucesso",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "$ref":"#/components/schemas/Order"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Erro de autenticação",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Pedido não encontrado",
             "content": {
               "application/json":{
                 "schema":{
@@ -1285,6 +1613,25 @@
             }
           },
           "createdAt": {"type":"string"}
+        }
+      },
+      "Order":{
+        "type":"object",
+        "properties":{
+          "products":{
+            "type":"array",
+            "items":{
+              "properties":{
+                "_id":{"type":"string"},
+                "quantity":{"type":"number"}
+              }
+            }
+          },
+          "totalPrice":{"type":"number"},
+          "freight":{"type": "number"},
+          "userId":{"type":"string"},
+          "completed":{"type":"boolean"},
+          "createdAt":{"type":"string"}
         }
       }
     }
