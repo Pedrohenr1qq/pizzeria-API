@@ -81,9 +81,23 @@ O Product representa o produto oferecido pela pizzaria. Seus atributos são:
 * unitPrice   --> Preço unitário do produto
 * image       --> Imagem do produto
 * category    --> A categoria a qual o produto pertence
+
   * _id       --> Id da categoria no DB
   * createdAt --> Quando essa categoria foi vinculada ao produto
 * createdAt   --> Quando essse produto foi criado
+
+### Order
+
+O Order representa o pedido feito pelo usuário. Seus atributos são:
+
+* products   --> Array de objetos com os produtos que o usuário pediu. Cada objeto é um pedido
+  * _id      --> Id do produto que o usuário pediu
+  * quantity --> Quantidade do produto que o usuário pediu
+* totalPrice --> Valor total do pedido
+* freight    --> Valor do frete do pedido
+* userId     --> Id do usuário que fez o pedido
+* completed  --> Status do pedido
+* createdAt  --> Quanto o pedido foi criado
 
 ## Rotas
 
