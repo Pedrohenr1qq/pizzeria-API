@@ -11,6 +11,7 @@ const authRouter = require('./src/router/auth.router');
 const userRouter = require('./src/router/user.router');
 const categoryRouter = require('./src/router/category.router');
 const productRouter = require('./src/router/product.router');
+const orderRouter = require('./src/router/order.router');
 const docsRouter = require('./src/router/docs.router');
 
 // Starting database connection
@@ -25,6 +26,7 @@ app.use('/auth', authRouter);
 app.use('/user', userRouter);
 app.use('/category', categoryRouter);
 app.use('/product', productRouter);
+app.use('/order', orderRouter);
 app.use('/docs', docsRouter);
 
 
