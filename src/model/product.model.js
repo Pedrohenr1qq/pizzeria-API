@@ -10,7 +10,8 @@ const productSchema = new mongoose.Schema({
     {
       _id: {type: mongoose.Schema.Types.ObjectId, required: true, ref: "categories"},
       createdAt: {type: Date, required: true, default: Date.now()}
-    }
+    },
+    createdAt: {type: Date, required: true, default: Date.now()}
 })
 
 const Product = mongoose.model("products", productSchema);
