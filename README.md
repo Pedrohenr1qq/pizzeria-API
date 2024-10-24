@@ -26,7 +26,6 @@ Para instalação dessas dependencias, utilize o comando: `npm i <nome-da-depend
 
 Para instalação dessas dependencias, utilize o comando: `npm i -D <nome-da-dependencia>`
 
-
 ## Objendo o programa
 
 Obtendo o program
@@ -47,19 +46,44 @@ git clone https://github.com/Pedrohenr1qq/pizzeria-API.git
 
 Verifique se o programa foi baixado corretamente. Caso sim, você pode seguir com a explicação abaixo.
 
-
 ## Componentes
 
 ### User
 
 O User representa o usuário que irá requisitar os serviços da pizaria. O usuário possui os seguintes atributos:
 
-* Nome --> Nome do usuário na plataforma
-* Email --> Para que o usuário consiga logar na plataforma
-* Senha --> Para que o usuário consiga logar na plataforma
-* Endereços --> Para saber para onde o pedido deve ser entregue
-* Admin --> Para saber os privilégios que esse usuário possui em relação à plataforma
-* CreatedAt --> Para saber quando esse usuário foi criado
+* name      --> Nome do usuário na plataforma
+* email     --> Para que o usuário consiga logar na plataforma
+* password  --> Para que o usuário consiga logar na plataforma
+* addresses --> Para saber para onde o pedido deve ser entregue
+  * street:     --> Rua do endereço do usuário
+  * number:     --> Número da casa do usuário
+  * complement: --> Complemento do endereço do usuário, caso possua
+  * CEP:        --> CEP do endereço do usuário,
+  * createdAt:  --> Quando o endereço foi criado
+* admin     --> Para saber os privilégios que esse usuário possui em relação à plataforma
+* createdAt --> Para saber quando esse usuário foi criado
+
+### Category
+
+A Category representa a categoria que um produto pode fazer parte, sendo apenas uma por produto. Seus atributos são:
+
+* name      --> Nome da categoria
+* createdAt --> Para saber quando essa categoria foi criada
+
+### Product
+
+O Product representa o produto oferecido pela pizzaria. Seus atributos são:
+
+* name        --> Nome do produto
+* description --> Descrição a cerca do produto
+* size        --> Tamanho do produto (Big, small para pizzas ou 1L, 2L para bebidas)
+* unitPrice   --> Preço unitário do produto
+* image       --> Imagem do produto
+* category    --> A categoria a qual o produto pertence
+  * _id       --> Id da categoria no DB
+  * createdAt --> Quando essa categoria foi vinculada ao produto
+* createdAt   --> Quando essse produto foi criado
 
 ## Rotas
 
