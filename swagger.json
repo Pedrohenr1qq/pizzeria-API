@@ -816,7 +816,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Delela uma categoria selecionada por ID",
+        "summary": "Deleta uma categoria selecionada por ID",
         "description": "Rota responsável por deletar uma categoria selecionada por ID",
         "tags":["Category"],
         "parameters":[
@@ -853,6 +853,344 @@
           },
           "404": {
             "description": "Categoria não encontrada",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno.",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/product/FindAll":{
+      "get":{
+        "security":[
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Mostra todos os produtos cadastrados",
+        "description": "Rota responsável por listar os produtos cadastrados desta API",
+        "tags": ["Product"],
+        "responses": {
+          "200": {
+            "description": "OK. Tarefa concluida com sucesso",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Product"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Erro de autenticação",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno.",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/product/FindById/{id}":{
+      "get":{
+        "security":[
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Mostra o produto escolhido pelo ID",
+        "description": "Rota responsável mostrar o produto selecionado pelo ID",
+        "tags": ["Product"],
+        "parameters":[
+          {
+            "in": "path",
+            "schema": {"type": "string"},
+            "name": "id"
+         }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. Tarefa concluida com sucesso",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "$ref":"#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Erro de autenticação",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Produto não encontrado",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno.",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/product/create": {
+      "post": {
+        "security":[
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Cria um novo produto",
+        "description": "Rota responsável pela criação de um novo produto, preenchido os campos necessários",
+        "tags": ["Product"],
+        "requestBody":{
+          "content":{
+            "application/json":{
+              "schema":{
+                "type":"object",
+                "$ref":"#/components/schemas/Product"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "OK. produto cadastrado com sucessso",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "$ref":"#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Erro de autenticação",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno.",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/product/update/{id}": {
+      "put":{
+        "security":[
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Atualiza um produto selecionado por ID",
+        "description": "Rota responsável por atualizar os dados de um produto selecionado por id, prenchidos os campos necessários",
+        "tags":["Product"],
+        "parameters":[
+          {
+            "in": "path",
+            "schema": {"type":"string"},
+            "name": "id"
+          }
+        ],
+        "requestBody":{
+          "content":{
+            "application/json":{
+              "schema":{
+                "type":"object",
+                "$ref":"#/components/schemas/Product"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200": {
+            "description": "OK. Tarefa concluida com sucesso",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "$ref":"#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Erro de autenticação",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Produto não encontrado",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno.",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/product/delete/{id}":{
+      "delete":{
+        "security":[
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Deleta um product selecionado por ID",
+        "description": "Rota responsável por deletar um produto selecionado por ID",
+        "tags":["Product"],
+        "parameters":[
+          {
+            "in": "path",
+            "schema": {"type": "string"},
+            "name": "id"
+         }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. Tarefa concluida com sucesso",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "$ref":"#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Erro de autenticação",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties": {
+                    "message": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Produto não encontrado",
             "content": {
               "application/json":{
                 "schema":{
@@ -929,6 +1267,24 @@
         "properties":{
           "name": {"type":"string"},
           "createdAt":{"type":"string"}
+        }
+      },
+      "Product": {
+        "type": "object",
+        "properties":{
+          "name": {"type":"string"},
+          "description": {"type":"string"},
+          "size": {"type":"string"},
+          "unitPrice": {"type":"number"},
+          "image": {"type": "string"},
+          "category":{
+            "type": "object",
+            "properties":{
+              "_id": {"type": "string"},
+              "createdAt":{"type":"string"}
+            }
+          },
+          "createdAt": {"type":"string"}
         }
       }
     }
