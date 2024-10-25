@@ -42,17 +42,7 @@ const validateAddress = (req, res, next) => {
   return next();
 }
 
-const validateAddressId = (req, res, next) => {
-  const addressId = req.body.addressId;
-  if(!addressId) return res.status(400).send({message: "addressId field is empty"})
-  if(!ObjectId.isValid(addressId)) return res.status(400).send({message: "Invalid address ID"})
-
-  return next();
-}
-
-
 module.exports = {
   validateUser,
-  validateAddress,
-  validateAddressId
+  validateAddress
 }
