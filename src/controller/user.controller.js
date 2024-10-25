@@ -5,11 +5,7 @@ const userService = require('../service/user.service');
 // READ
 const findUserById = async (req,res) =>{
   try {
-    const user = await userService.findUserById(req.params.id);
-
-    if(!user) return res.status(404).send({message: "User not found"});
-
-    return res.send(user);
+    return res.send(await userService.findUserById(req.params.id));
 
   } catch (error) {
     if(error.kind == "ObjectId") return res.status(400).send({message: "Invalid ID"});
@@ -22,6 +18,7 @@ const findUserById = async (req,res) =>{
 const findAllUsers = async (req,res) =>{
   try {
     return  res.send(await userService.findAllUsers());
+
   } catch (error) {
     console.log(`Error in find all USERS: ${error.message}`);
     return res.status(500).send({message: 'Internal error. Try again later.'});
@@ -31,12 +28,7 @@ const findAllUsers = async (req,res) =>{
 // CREATE
 const createUser= async (req,res) =>{
   try {
-    const newUser = req.body;
-    if(!newUser.name) return res.status(400).send({message: "The name field is empty"});
-    if(!newUser.email) return res.status(400).send({message: "The email field is empty"});
-    if(!newUser.password) return res.status(400).send({message: "The password field is empty"});
-
-    return res.status(201).send(await userService.createUser(newUser));
+    return res.status(201).send(await userService.createUser(req.body));
 
   } catch (error) {
     console.log(`Error in create USER: ${error.message}`);
@@ -47,12 +39,7 @@ const createUser= async (req,res) =>{
 // UPDATE
 const updateUser= async (req,res) =>{
   try {
-    const updatedUser = req.body;
-    if(!updatedUser.name) return res.status(400).send({message: "The name field is empty"});
-    if(!updatedUser.email) return res.status(400).send({message: "The email field is empty"});
-    if(!updatedUser.password) return res.status(400).send({message: "The password field is empty"});
-
-    res.send(await userService.updateUser(req.params.id, updatedUser));
+    res.send(await userService.updateUser(req.params.id, req,body));
 
   } catch (error) {
     console.log(`Error in update USER: ${error.message}`);
@@ -63,9 +50,7 @@ const updateUser= async (req,res) =>{
 // DELETE
 const deleteUser= async (req,res) =>{
   try {
-    const deletedUser = await userService.deleteUser(req.params.id);
-    if(deletedUser != null) return res.send({message: "User deleted"});
-    else return res.status(404).send({message: "User not found"});
+    return res.send(await userService.deleteUser(req.params.id));
 
   } catch (error) {
     console.log(`Error in delete USER: ${error.message}`);

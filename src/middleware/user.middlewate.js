@@ -12,6 +12,8 @@ const validateUser = (req, res, next) => {
   let errors = [];
   const user = req.body;
 
+  if(!user) return res.status(400).send({message: "User field is empty"});
+
   if(!user.name) errors.push('name');
   if(!user.email) errors.push('email');
   if(!user.password) errors.push('password');
