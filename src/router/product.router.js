@@ -4,20 +4,21 @@ const router = require('express').Router();
 // Internal Requires
 const productController = require('../controller/product.controller');
 const authMiddleware = require('../middleware/auth.middleware');
+const {validateIdParams, validateProductCaregoryId} = require('../middleware/id.middleware');
 const {validateProduct} = require('../middleware/product.middleware');
 
 // Create routes
 // GET
-router.get('/findById/:id', authMiddleware, productController.findProductById);
+router.get('/findById/:id', authMiddleware, validateIdParams, productController.findProductById);
 router.get('/findAll', authMiddleware, productController.findAllProducts);
 
 // POST
-router.post('/create', authMiddleware, validateProduct, productController.createProduct);
+router.post('/create', authMiddleware, validateProduct, validateProductCaregoryId, productController.createProduct);
 
 // PUT
-router.put('/update/:id', authMiddleware, validateProduct, productController.updateProduct);
+router.put('/update/:id', authMiddleware, validateIdParams, validateProduct, validateProductCaregoryId, productController.updateProduct);
 
 // DELETE
-router.delete('/delete/:id', authMiddleware, productController.deleteProduct);
+router.delete('/delete/:id', authMiddleware, validateIdParams, productController.deleteProduct);
 
 module.exports = router;
