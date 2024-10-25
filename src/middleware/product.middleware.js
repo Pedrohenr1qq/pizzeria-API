@@ -6,7 +6,7 @@ function showErrors(errors){
 const validateProduct = async (req, res, next) => {
   let errors = []
   const product = req.body;
-  const productCategory =  req.body.category;
+  const productCategory =  product.category;
 
   if(!product.name) errors.push("name ");
   if(!product.description) errors.push("description ");
