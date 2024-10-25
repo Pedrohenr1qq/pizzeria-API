@@ -12,12 +12,9 @@ const validateUser = (req, res, next) => {
   let errors = [];
   const user = req.body;
 
-  if(!user) return res.status(400).send({message: "User field is empty"});
-
   if(!user.name) errors.push('name');
   if(!user.email) errors.push('email');
   if(!user.password) errors.push('password');
-  if(!user.image) errors.push('image');
   if(user.admin == undefined) errors.push('admin');
 
   if(errors.length != 0){
@@ -46,8 +43,8 @@ const validateAddress = (req, res, next) => {
 }
 
 const validateAddressId = (req, res, next) => {
-  const addressId = req.body;
-  if(!addressId) return res.status(404).send({message: "User not found"}); 
+  const addressId = req.body.addressId;
+  if(!addressId) return res.status(400).send({message: "addressId field is empty"})
   if(!ObjectId.isValid(addressId)) return res.status(400).send({message: "Invalid address ID"})
 
   return next();

@@ -62,9 +62,7 @@ const deleteUser= async (req,res) =>{
 // CREATE
 const addAddress= async (req,res) =>{
   try {
-    const newAddress = req.body;
-
-    const addressAdded = await userService.addAddress(req.params.id, newAddress);
+    const addressAdded = await userService.addAddress(req.params.id, req.body);
 
     if(addressAdded != null) return res.send({message: "User address added"});
     else return res.status(400).send({message: "Something is wrong. Try again"});
@@ -80,8 +78,6 @@ const removeAddress= async (req,res) =>{
     const addressId = req.body.addressId;
     let found = false;
 
-    if (!addressId) return res.status(400).send({message: "addressId field is empty"});
-
     const userRemovedAddress = await userService.removeAddress(req.params.id, addressId);
     if(userRemovedAddress == null) return res.status(404).send({message: "User not found"});
       
@@ -89,6 +85,7 @@ const removeAddress= async (req,res) =>{
 
     if(found) return res.send({message: "User address removed"});
     else return res.status(400).send({message: "Address not found."});
+
   } catch (error) {
     console.log(`Error in delete USER address: ${error.message}`);
     return res.status(500).send({message: 'Internal error. Try again later.'});
