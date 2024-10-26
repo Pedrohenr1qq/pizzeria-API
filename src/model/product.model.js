@@ -1,5 +1,7 @@
+// Dependencies
 const mongoose = require('mongoose');
 
+// Create a product schema
 const productSchema = new mongoose.Schema({
   name: {type: String, unique: true, required: true},
   description: {type: String, required: true},
@@ -14,6 +16,7 @@ const productSchema = new mongoose.Schema({
     createdAt: {type: Date, required: true, default: Date.now()}
 })
 
+// Create a product model and collection to DB
 const Product = mongoose.model("products", productSchema);
 
 module.exports = Product;

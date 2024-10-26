@@ -1,8 +1,10 @@
+// Show all errors accumulated
 function showErrors(errors){
   if(errors.length > 1) return `The fields '${errors}' are empties`;
   else return `The field '${errors}' is empty`
 }
 
+// Check if a product is valid: Has name, description, size, unitPrice, image, category fields and sub-fields of category (_id)
 const validateProduct = async (req, res, next) => {
   let errors = []
   const product = req.body;

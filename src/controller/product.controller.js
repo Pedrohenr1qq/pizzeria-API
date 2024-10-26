@@ -1,6 +1,8 @@
+// Internal requires
 const productService = require('../service/product.service');
 
-
+//Product CRUD requests
+// READ
 const findProductById = async (req, res) => {
   try {
     return res.send(await productService.findProductById(req.params.id));
@@ -21,6 +23,7 @@ const findAllProducts = async (req, res) => {
   }
 }
 
+// CREATE
 const createProduct = async (req, res) => {
   try {
     return res.status(201).send(await productService.createProduct(req.body));
@@ -31,6 +34,7 @@ const createProduct = async (req, res) => {
   }
 }
 
+// UPDATE
 const updateProduct =  async (req, res) => {
   try {
     return res.send(await productService.updateProduct(req.params.id, req.body));
@@ -40,6 +44,7 @@ const updateProduct =  async (req, res) => {
   }
 }
 
+// DELETE
 const deleteProduct = async (req, res) => {
   try {
     return res.send(await productService.deleteProduct(req.params.id)); 
