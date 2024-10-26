@@ -1,9 +1,7 @@
 // Dependencies
 const express = require('express');
-
-require('dotenv').config();
-
-const cors = require('cors');
+require('dotenv').config(); // dotenv configs
+const cors = require('cors'); 
 
 // Internal Requires
 const connectToDatabase = require('./src/database/database');
@@ -23,9 +21,10 @@ connectToDatabase();
 const app = express();
 app.use(express.json());
 
+// CORS config
 app.use(cors({
-  origin: 'https://localhost:3001',
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"]
+  origin: 'https://localhost:3001', // IP authorized to acess this API
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"] // HTTP methods authorized
 }));
 
 //Create Routes
