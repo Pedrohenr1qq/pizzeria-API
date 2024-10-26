@@ -17,7 +17,7 @@ const findUserById = async (req,res) =>{
 
 const findAllUsers = async (req,res) =>{
   try {
-    return  res.send(await userService.findAllUsers());
+    return  res.send(await userService.findAllUsers(req.params.limit, req.params.offset));
 
   } catch (error) {
     console.log(`Error in find all USERS: ${error.message}`);

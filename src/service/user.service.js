@@ -5,7 +5,7 @@ const User = require('../model/user.model');
 // READ user
 const findUserById = (id) => User.findById(id);
 
-const findAllUsers = () => User.find();
+const findAllUsers = (limit, offset) => User.find().limit(limit).skip(offset);
 
 // CREATE user
 const createUser = (newUser) => User.create(newUser);

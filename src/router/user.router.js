@@ -6,11 +6,12 @@ const userController = require('../controller/user.controller');
 const authMiddleware = require('../middleware/auth.middleware');
 const {validateIdParams, validateAddressId} = require('../middleware/id.middleware');
 const {validateUser, validateAddress} = require('../middleware/user.middlewate');
+const pagination = require('../middleware/pagination.middleware');
 
 // Create routes
 // GET
 router.get('/findById/:id',authMiddleware, validateIdParams, userController.findUserById);
-router.get('/findAll', authMiddleware, userController.findAllUsers);
+router.get('/findAll', authMiddleware, pagination, userController.findAllUsers);
 
 // POST
 router.post('/create', validateUser, userController.createUser);
