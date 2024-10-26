@@ -1,3 +1,4 @@
+// Internal requires
 const User = require('../model/user.model');
 
 // User consult DB

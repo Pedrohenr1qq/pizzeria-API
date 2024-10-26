@@ -1,7 +1,7 @@
 // Internal require
 const userService = require('../service/user.service');
 
-// User routes
+// User CRUD requests
 // READ
 const findUserById = async (req,res) =>{
   try {
@@ -58,7 +58,7 @@ const deleteUser= async (req,res) =>{
   }
 }
 
-// Address routes
+// Address requests
 // CREATE
 const addAddress= async (req,res) =>{
   try {
@@ -81,7 +81,7 @@ const removeAddress= async (req,res) =>{
     const userRemovedAddress = await userService.removeAddress(req.params.id, addressId);
     if(userRemovedAddress == null) return res.status(404).send({message: "User not found"});
       
-    userRemovedAddress.addresses.map((address) => found = (address._id == addressId));
+    userRemovedAddress.addresses.map((address) => found = (address._id == addressId)); // If addressId is valid and exists, its possible to remove it
 
     if(found) return res.send({message: "User address removed"});
     else return res.status(400).send({message: "Address not found."});
