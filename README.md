@@ -26,6 +26,16 @@ Para instalação dessas dependencias, utilize o comando: `npm i <nome-da-depend
 
 Para instalação dessas dependencias, utilize o comando: `npm i -D <nome-da-dependencia>`
 
+
+## Extensões
+
+### Thunder Client
+
+Abra o editor de código que você tem baixado e, na aba de extensões, pesquise pela extensão Thunder Client.
+
+Instale ela.
+
+
 ## Objendo o programa
 
 Obtendo o program
