@@ -9,7 +9,7 @@ beforeAll(() => {
   app.listen(3001, () => console.log("Server running"));
 });
 
-// Check all CRUD, login and validate routes
+// Check all CRUD and login routes
 describe('Pizzaria API -- USER test', ()=>{ 
   let userId, userToken, addressId;
 
