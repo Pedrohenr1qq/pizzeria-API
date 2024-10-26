@@ -4,7 +4,7 @@ const Order = require('../model/order.model');
 // Order DB consults
 // READ order
 const findOrderById = (id) => Order.findById(id);
-const findAllOrders = () => Order.find();
+const findAllOrders = (limit, offset) => Order.find().limit(limit).skip(offset);
 
 // CREATE order
 const createOrder = (newOrder) => Order.create(newOrder);
