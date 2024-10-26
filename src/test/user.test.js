@@ -11,10 +11,10 @@ beforeAll(() => {
 
 // Check all CRUD, login and validate routes
 describe('Pizzaria API -- USER test', ()=>{ 
-  let userId, userToken;
+  let userId, userToken, addressId;
 
   // CREATE Route --> Check if a new user was created sucessfully
-  it('should create a new user', async ()=>{
+  it('should create an new user', async ()=>{
     const response = await request(app)
     .post('/user/create').send({
       name: "Pedro",
@@ -24,8 +24,6 @@ describe('Pizzaria API -- USER test', ()=>{
     })
 
     userId = response.body._id;
-
-    console.log("userId: "+ userId);
 
     expect(response.statusCode).toEqual(201);
   });
@@ -44,16 +42,32 @@ describe('Pizzaria API -- USER test', ()=>{
     expect(response.statusCode).toEqual(200);
   });
 
+  // addAddress Route --> Check if a user was updated sucessfully
+  it('should add address an user', async ()=>{
+    const response = await request(app)
+    .post(`/user/addAddress/${userId}`)
+    .send([{
+      street: "Rua 1",
+      number: 10,
+      CEP: "666111-1"
+    }]).set('Authorization', `Bearer ${userToken}`);
+    
+    expect(response.statusCode).toEqual(200);
+  });
+
   // READ Route --> Check if a user exist 
-  it('should find a user', async ()=>{
-    const response = await request(app).get(`/user/findById/${userId}`)
+  it('should find an user', async ()=>{
+    const response = await request(app)
+    .get(`/user/findById/${userId}`)
     .set('Authorization', `Bearer ${userToken}`);
 
+    addressId = response.body.addresses[0]._id;
+  
     expect(response.statusCode).toEqual(200);
   });
 
   // UPDATE Route --> Check if a user was updated sucessfully
-  it('should update a user', async ()=>{
+  it('should update an user', async ()=>{
     const response = await request(app)
     .put(`/user/update/${userId}`)
     .send({
@@ -66,9 +80,22 @@ describe('Pizzaria API -- USER test', ()=>{
     expect(response.statusCode).toEqual(200);
   });
 
+  // removeAddress Route --> Check if a user exist 
+  it('should remove a address from a user', async ()=>{
+    const response = await request(app)
+    .delete(`/user/removeAddress/${userId}`)
+    .send({
+      addressId: addressId
+    })
+    .set('Authorization', `Bearer ${userToken}`)
+
+    expect(response.statusCode).toEqual(200);
+  });
+
   // DELETE Route --> Check if a user was deleted sucessfully
-  it('should delete a user ', async()=>{
-    const response = await request(app).delete(`/user/delete/${userId}`)
+  it('should delete an user ', async()=>{
+    const response = await request(app)
+    .delete(`/user/delete/${userId}`)
     .set('Authorization', `Bearer ${userToken}`);
 
     expect(response.statusCode).toEqual(200);
