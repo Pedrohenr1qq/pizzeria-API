@@ -5,7 +5,9 @@ const orderService = require('../service/order.service');
 // READ
 const findOrderById = async (req, res) => {
   try {
-    res.send(await orderService.findOrderById(req.params.id));
+    const order = await orderService.findOrderById(req.params.id);
+    if(order == null) return res.status(404).send({message: "Order not found"});
+    else return res.send(order);
 
   } catch (err) {
     console.log(`Error in find ORDER by id: ${err.message}`);
@@ -42,7 +44,9 @@ const createOrder = async (req, res) => {
 //DELETE
 const deleteOrder = async (req, res) => {
   try {
-    res.send(await orderService.deleteOrder(req.params.id));
+    const order = await orderService.deleteOrder(req.params.id);
+    if(order == null) return res.status(404).send({message: "Order not found"});
+    else return res.send(order);
 
   } catch (err) {
     console.log(`Error in delete a ORDER: ${err.message}`);
@@ -53,7 +57,9 @@ const deleteOrder = async (req, res) => {
 // UPDATE 
 const updateStatusOrder = async (req, res) => {
   try {
-    res.send(await orderService.updateStatusOrder(req.params.id));
+    const order = await orderService.updateStatusOrder(req.params.id);
+    if(order == null) return res.status(404).send({message: "Order not found"});
+    else return res.send(order);
     
   } catch (err) {
     console.log(`Error in delete a ORDER: ${err.message}`);
