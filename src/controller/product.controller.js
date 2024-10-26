@@ -5,7 +5,9 @@ const productService = require('../service/product.service');
 // READ
 const findProductById = async (req, res) => {
   try {
-    return res.send(await productService.findProductById(req.params.id));
+    const product = await productService.findProductById(req.params.id);
+    if(product == null) return res.status(404).send({message: "Product not found"});
+    else return res.send(product);
 
   } catch (err) {
     console.log(`Error in find PRODUCT by id: ${err.message}`);
@@ -37,7 +39,10 @@ const createProduct = async (req, res) => {
 // UPDATE
 const updateProduct =  async (req, res) => {
   try {
-    return res.send(await productService.updateProduct(req.params.id, req.body));
+    const product = await productService.updateProduct(req.params.id, req.body)
+    if(product == null) return res.status(404).send({message: "Product not found"});
+    else return res.send(product);
+
   } catch (error) {
     console.log(`Error in update a PRODUCT: ${err.message}`);
     return res.status(500).send({message: "Internal Error. Trye again later."});
@@ -47,7 +52,10 @@ const updateProduct =  async (req, res) => {
 // DELETE
 const deleteProduct = async (req, res) => {
   try {
-    return res.send(await productService.deleteProduct(req.params.id)); 
+    const product = await productService.deleteProduct(req.params.id);
+    if(product == null) return res.status(404).send({message: "Product not found"});
+    else return res.send(product);
+    
   } catch (err) {
     console.log(`Error in delete a PRODUCT: ${err.message}`);
     return res.status(500).send({message: "Internal Error. Trye again later."});
