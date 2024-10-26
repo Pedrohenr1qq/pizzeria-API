@@ -1,0 +1,22 @@
+{
+    "clientName": "Thunder Client",
+    "environmentName": "pizzaria-API",
+    "environmentId": "566e005f-8193-4976-8f29-28827d03ba17",
+    "dateExported": "2024-10-26T02:47:11.390Z",
+    "version": "1.2",
+    "variables": [
+        {
+            "name": "BaseUrl",
+            "value": "http://localhost:"
+        },
+        {
+            "name": "Port",
+            "value": "3000"
+        },
+        {
+            "name": "token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MWM1MjE0ZGU1Yjc0ZmMyYzY3OTIyMCIsImlhdCI6MTcyOTkwOTI5NiwiZXhwIjoxNzI5OTk1Njk2fQ.QuPRqcgUDMFjU4WKqPsrX7WdwORDZ1yixpt3yl1_SN0"
+        }
+    ],
+    "ref": "O0FkkTO9H6zeIF53r9AVcRvL0fGO_hCgccSYgDvupwKJX-V3yEAfN5VO5i2D8zoD"
+}
