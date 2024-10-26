@@ -4,7 +4,7 @@ const Product = require('../model/product.model');
 // Product DB consult
 // READ product
 const findProductById = (id) => Product.findById(id);
-const findAllProducts = (limit, ofsset) => Product.find().limit(limit).skip(offset);
+const findAllProducts = (limit, offset) => Product.find().limit(limit).skip(offset);
 
 // CREATE product
 const createProduct = (newProduct) => Product.create(newProduct);
