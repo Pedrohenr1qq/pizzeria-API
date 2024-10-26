@@ -39,7 +39,7 @@ const createUser= async (req,res) =>{
 // UPDATE
 const updateUser= async (req,res) =>{
   try {
-    res.send(await userService.updateUser(req.params.id, req,body));
+    res.send(await userService.updateUser(req.params.id, req.body));
 
   } catch (error) {
     console.log(`Error in update USER: ${error.message}`);
