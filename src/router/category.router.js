@@ -6,11 +6,12 @@ const categoryController = require('../controller/category.controller');
 const authMiddleware = require('../middleware/auth.middleware');
 const {validateIdParams} = require('../middleware/id.middleware');
 const categoryValidate = require('../middleware/category.middleware');
+const pagination = require('../middleware/pagination.middleware');
 
 // Create routes
 // GET
 router.get('/findById/:id', authMiddleware, validateIdParams, categoryController.findCategoryById);
-router.get('/findAll', authMiddleware, categoryController.findAllCategories);
+router.get('/findAll', authMiddleware, pagination, categoryController.findAllCategories);
 
 // POST
 router.post('/create', authMiddleware, categoryValidate, categoryController.createCategory);
