@@ -1,6 +1,10 @@
+// Dependencies
 const jwt = require('jsonwebtoken');
+
+// Internal Requires
 const {findUserById} = require('../service/user.service');
 
+// Check if token is valid (exists, correct formart and not expired) 
 module.exports = async (req, res, next) => {
   const authHeader = req.headers.authorization;
 
@@ -15,11 +19,13 @@ module.exports = async (req, res, next) => {
 
   const [schema, token] = parts;
 
+  // Regex to test if schema is valid
   if(!/^Bearer/i.test(schema)) {
     console.log('Malformatted token');
     return res.status(401).send({message: "Login invalid"});
   }
 
+  // Check if token is valid
   jwt.verify(token, process.env.SECRET_KEY, async(err, decoded) => {
       if(err) {
         console.log(`Error in validate token: ${err}`);
