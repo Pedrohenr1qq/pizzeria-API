@@ -5,7 +5,9 @@ const userService = require('../service/user.service');
 // READ
 const findUserById = async (req,res) =>{
   try {
-    return res.send(await userService.findUserById(req.params.id));
+    const user = await userService.findUserById(req.params.id);
+    if(user == null) return res.status(404).send({message: "User not found"});
+    else return res.send(user);
 
   } catch (error) {
     if(error.kind == "ObjectId") return res.status(400).send({message: "Invalid ID"});
@@ -39,7 +41,9 @@ const createUser= async (req,res) =>{
 // UPDATE
 const updateUser= async (req,res) =>{
   try {
-    res.send(await userService.updateUser(req.params.id, req.body));
+    const user = await userService.updateUser(req.params.id, req.body);
+    if(user == null) return res.status(404).send({message: "User not found"});
+    else return res.send(user);
 
   } catch (error) {
     console.log(`Error in update USER: ${error.message}`);
@@ -50,7 +54,9 @@ const updateUser= async (req,res) =>{
 // DELETE
 const deleteUser= async (req,res) =>{
   try {
-    return res.send(await userService.deleteUser(req.params.id));
+    const user= await userService.deleteUser(req.params.id);
+    if(user == null) return res.status(404).send({message: "User not found"});
+    else return res.send(user);
 
   } catch (error) {
     console.log(`Error in delete USER: ${error.message}`);
