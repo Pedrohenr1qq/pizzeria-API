@@ -1,5 +1,8 @@
+// Internal Requires
 const categoryService = require('../service/category.service');
 
+// Category CRUD requests
+// READ
 const findCategoryById = async (req,res) => {
   try {
     res.send(await categoryService.findCategoryById(req.params.id));
@@ -20,6 +23,7 @@ const findAllCategories = async (req,res) => {
   }
 }
 
+// CREATE
 const createCategory = async (req,res) => {
   try {
     res.status(201).send(await categoryService.createCategory(req.body));
@@ -30,6 +34,7 @@ const createCategory = async (req,res) => {
   }
 }
 
+// UPDATE
 const updateCategory = async (req,res) => {
   try {
     res.send(await categoryService.updateCategory(req.params.id, req.body));
@@ -40,6 +45,7 @@ const updateCategory = async (req,res) => {
   }
 }
 
+// DELETE
 const deleteCategory = async (req,res) => {
   try {
     res.send(await categoryService.deleteCategory(req.params.id));
