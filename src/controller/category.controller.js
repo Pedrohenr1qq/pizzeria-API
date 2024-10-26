@@ -5,7 +5,9 @@ const categoryService = require('../service/category.service');
 // READ
 const findCategoryById = async (req,res) => {
   try {
-    res.send(await categoryService.findCategoryById(req.params.id));
+    const category = await categoryService.findCategoryById(req.params.id);
+    if(category == null) return res.status(404).send({message: "category not found"});
+    else return res.send(category);
 
   } catch (err) {
     console.log(`Error in find CATEGORY by id: ${err.message}`);
@@ -37,7 +39,9 @@ const createCategory = async (req,res) => {
 // UPDATE
 const updateCategory = async (req,res) => {
   try {
-    res.send(await categoryService.updateCategory(req.params.id, req.body));
+    const category = await categoryService.updateCategory(req.params.id, req.body)
+    if(category == null) return res.status(404).send({message: "category not found"});
+    else return res.send(category);
 
   } catch (err) {
     console.log(`Error in update CATEGORY: ${err.message}`);
@@ -48,7 +52,9 @@ const updateCategory = async (req,res) => {
 // DELETE
 const deleteCategory = async (req,res) => {
   try {
-    res.send(await categoryService.deleteCategory(req.params.id));
+    const category = await categoryService.deleteCategory(req.params.id);
+    if(category == null) return res.status(404).send({message: "category not found"});
+    else return res.send(category);
     
   } catch (err) {
     console.log(`Error in delete CATEGORY: ${err.message}`);
