@@ -1,8 +1,10 @@
+// Show all errors accumulated
 function showErrors(errors){
   if(errors.length > 1) return `The fields '${errors}' are empties`;
   else return `The field '${errors}' is empty`
 }
 
+// Check if an order is valid: Has products, totalPrice, freight, completed fields and subfields of products (_id, quantity)
 const validateOrder = async (req, res, next) => {
   let errors = [];
   const order = req.body;

@@ -1,5 +1,8 @@
+// Internal Requires
 const orderService = require('../service/order.service');
 
+// Order requests
+// READ
 const findOrderById = async (req, res) => {
   try {
     res.send(await orderService.findOrderById(req.params.id));
@@ -20,11 +23,12 @@ const findAllOrders = async (req, res) => {
   }
 }
 
+// CREATE
 const createOrder = async (req, res) => {
   try {
     const newOrder = {
       ...req.body,
-      userId: req.userId,
+      userId: req.userId, // link the order to the user who acessed the API
     }
 
     res.status(201).send(await orderService.createOrder(newOrder));
@@ -35,6 +39,7 @@ const createOrder = async (req, res) => {
   }
 }
 
+//DELETE
 const deleteOrder = async (req, res) => {
   try {
     res.send(await orderService.deleteOrder(req.params.id));
@@ -45,6 +50,7 @@ const deleteOrder = async (req, res) => {
   }
 }
 
+// UPDATE 
 const updateStatusOrder = async (req, res) => {
   try {
     res.send(await orderService.updateStatusOrder(req.params.id));

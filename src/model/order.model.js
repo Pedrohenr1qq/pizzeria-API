@@ -1,5 +1,7 @@
+// Dependencies
 const mongoose = require('mongoose');
 
+// Create an order schema
 const orderSchema = new mongoose.Schema({
   products: [
     {
@@ -14,6 +16,7 @@ const orderSchema = new mongoose.Schema({
   createdAt: {type: Date, required: true, default: Date.now()}
 });
 
+// Create an order model and collection to DB
 const Order = mongoose.model('order', orderSchema);
 
 module.exports = Order;
