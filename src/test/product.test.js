@@ -7,9 +7,16 @@ const request = require('supertest');
 // Internal Requires
 const app = require('../../index');
 
+let server;
+
 // Start the server and database
 beforeAll(() => {
-  app.listen(3003, () => console.log("Server running"));
+  server = app.listen(3003, () => console.log("Server running"));
+});
+
+// Close server
+afterAll(() => {
+  server.close();
 });
 
 // Check all CRUD and login routes
@@ -50,7 +57,7 @@ describe('Pizzaria API -- Product test', ()=>{
   it('should create an new category', async ()=>{
     const response = await request(app)
     .post('/category/create').send({
-      name: "Test"
+      name: "Test Category"
     })
     .set('Authorization', `Bearer ${userToken}`);
 
@@ -63,7 +70,7 @@ describe('Pizzaria API -- Product test', ()=>{
   it('should create an new product', async ()=>{
     const response = await request(app)
     .post('/product/create').send({
-      name: "Test name",
+      name: "Test Product",
       description: "Teste description",
       size: "Test size",
       unitPrice: 1,

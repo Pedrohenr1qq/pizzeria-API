@@ -4,9 +4,16 @@ const request = require('supertest');
 // Internal Requires
 const app = require('../../index');
 
+let server;
+
 // Start the server and database
 beforeAll(() => {
-  app.listen(3001, () => console.log("Server running"));
+  server = app.listen(3001, () => console.log("Server running"));
+});
+
+// Close server
+afterAll(() => {
+  server.close();
 });
 
 // Check all CRUD and login routes
