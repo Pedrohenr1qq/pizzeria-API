@@ -35,7 +35,6 @@ describe('Pizzaria API -- USER test', ()=>{
       email: "pedrinho@gmail.com",
       password: "pedro123"
     })
-    .set('Authorization', `Bearer ${userToken}`);
 
     userToken = response.body.token;
 
