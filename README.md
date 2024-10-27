@@ -26,7 +26,6 @@ Para instalação dessas dependencias, utilize o comando: `npm i <nome-da-depend
 
 Para instalação dessas dependencias, utilize o comando: `npm i -D <nome-da-dependencia>`
 
-
 ## Extensões
 
 ### Thunder Client
@@ -34,7 +33,6 @@ Para instalação dessas dependencias, utilize o comando: `npm i -D <nome-da-dep
 Abra o editor de código que você tem baixado e, na aba de extensões, pesquise pela extensão Thunder Client.
 
 Instale ela.
-
 
 ## Objendo o programa
 
@@ -55,6 +53,16 @@ git clone https://github.com/Pedrohenr1qq/pizzeria-API.git
 ```
 
 Verifique se o programa foi baixado corretamente. Caso sim, você pode seguir com a explicação abaixo.
+
+
+## Como usar o programa
+
+Feita a instalação do programa, entre no mesmo diretório principal, abra um terminal e digite o comando: `npm run dev`
+
+Aparacerá o IP em que o servidor irá rodar, sendo ele: *http://localhost:3000/*
+
+Você pode usar a extensão citada anteriormente, Thunder Client, para testar as rotas da API ou acessar a documentação das rotas feita com swagger, na parte de [rotas](#rotas).
+
 
 ## Componentes
 
@@ -112,3 +120,9 @@ O Order representa o pedido feito pelo usuário. Seus atributos são:
 ## Rotas
 
 As rotas existentes estão documentadas no Swagger Document. Se quiser saber mais, acesse a rota: `/docs/api-routes`
+
+## Testes
+
+É possível realizar testes unitários para verificar se as rotas estão funcionando. Para isso, utilize o comando `npm run test-<nome-do-componente>`. Os componentes são: **user**, **category**, **product**, **order**.
+
+Por exemplo: Para testar a rota dos produtos, utilize o comando `npm run test-product`
