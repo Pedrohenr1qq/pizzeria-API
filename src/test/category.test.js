@@ -1,5 +1,5 @@
-// To create a new category, is needed a user.
-// So --> create a user, do login, CRUD category, delete user
+// To create a new category, is needed an user.
+// So --> create an user, do login, CRUD category, delete user
 
 // Dependencies
 const request = require('supertest');
